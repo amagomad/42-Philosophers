@@ -46,7 +46,9 @@ void    ft_putnbr_fd(long int num, int fd)
 
 int str_length(char *str)
 {
-    int i = 0;
+    int i;
+
+    i = 0;
     while (str[i])
         i++;
     return (i);

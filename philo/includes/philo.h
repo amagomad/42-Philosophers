@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <limits.h>
 
 //
 
@@ -60,6 +61,9 @@ int         check_stop_condition(t_philosopher *ph, int set_flag);
 int			check_stop_condition2(t_all_data *data);
 void		wait_for_termination(t_all_data *data);
 char		**check_split(char **av);
+long int	ft_atoi(const char *str);
+void		free_split(char **split);
+void		characters_arg(char *str);
 
 // utils
 
@@ -73,5 +77,6 @@ int         str_length(char *str);
 
 char		**allocate_final_array(int size);
 void		fill_final_array(char **final, const char *av, int *i, int *arg);
+char		**ft_split(int ac, char **av);
 
 #endif

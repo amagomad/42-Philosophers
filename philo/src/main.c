@@ -1,10 +1,10 @@
 #include "../includes/philo.h"
 
-int main(int argc, char **argv)
+int main(int ac, char **av)
 {
     t_all_data all;
-
-    if (!parse_arguments(argc, argv, &all))
+    
+    if (!parse_arguments(ac, av, &all))
         return (exit_with_error("Invalid arguments\n"));
     all.philo_array = malloc(sizeof(t_philosopher) * all.params.total_philos);
     if (!all.philo_array)
@@ -15,6 +15,5 @@ int main(int argc, char **argv)
         return (0);
     }
     wait_for_termination(&all);
-
     return (0);
 }

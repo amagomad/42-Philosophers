@@ -1,6 +1,6 @@
 #include "../includes/philo.h"
 
-static void	characters_arg(char *str)
+void	characters_arg(char *str)
 {
 	int		i;
 
@@ -38,30 +38,23 @@ char	**check_split(char **av)
 	return (final);
 }
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
 	int		nb;
-	int		sign;
 	int		i;
 
-	sign = 1;
 	nb = 0;
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
-	if (str[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	else if (str[i] == '+')
+	if (str[i] == '+')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nb = nb * 10 + (str[i] - 48);
 		i++;
 	}
-	return (nb * sign);
+	return (nb);
 }
 
 int     is_numeric(char **av, int i, int j)

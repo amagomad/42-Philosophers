@@ -1,6 +1,6 @@
 #include "../includes/philo.h"
 
-static void	free_split(char **split)
+void	free_split(char **split)
 {
 	int		i;
 
@@ -66,4 +66,17 @@ void	fill_final_array(char **final, const char *av, int *i, int *arg)
 		(*arg)++;
 	}
 	final[*arg] = NULL;
+}
+
+char	**ft_split(int ac, char **av)
+{
+	characters_arg(av[1]);
+	check_split(av);
+	ac = 0;
+	while (av[ac])
+	{
+		printf("av[%d] = %s\n", ac, av[ac]);
+		ac++;
+	}
+	return (av);
 }
