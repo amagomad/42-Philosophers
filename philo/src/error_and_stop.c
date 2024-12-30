@@ -1,12 +1,5 @@
 #include "../includes/philo.h"
 
-int exit_with_error(char *msg)
-{
-    ft_putstr_fd("Error: ", 2);
-    ft_putstr_fd(msg, 2);
-    return (0);
-}
-
 int check_stop_condition2(t_all_data *data)
 {
     pthread_mutex_lock(&data->params.death_mutex);
@@ -21,7 +14,7 @@ int check_stop_condition2(t_all_data *data)
 
 void wait_for_termination(t_all_data *data)
 {
-    int i;
+    int		i;
 
     // Wait until a philosopher dies or everyone is done
     while (!check_stop_condition2(data))

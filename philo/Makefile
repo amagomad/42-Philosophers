@@ -1,4 +1,4 @@
-NAME = philosopher
+NAME = philo
 HEADER = ./includes/
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -I $(HEADER) -pthread
@@ -11,7 +11,6 @@ SRC = ./src/main.c \
       ./src/routine.c \
       ./src/utils.c \
       ./src/time_utils.c \
-	  ./src/utils_2.c
 
 all: $(NAME)
 
