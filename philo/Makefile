@@ -4,10 +4,10 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -I $(HEADER) -pthread
 OBJS = $(SRC:.c=.o)
 SRC = ./src/main.c \
-      ./src/error_and_stop.c \
+      ./src/error.c \
       ./src/init.c \
       ./src/monitor.c \
-      ./src/parser.c \
+      ./src/parsing.c \
       ./src/routine.c \
       ./src/utils.c \
       ./src/time_utils.c \

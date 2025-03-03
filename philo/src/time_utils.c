@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   time_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nashxo <nashxo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/12 16:29:12 by amagomad          #+#    #+#             */
+/*   Updated: 2025/03/03 12:24:31 by nashxo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 
-int check_stop_condition(t_philosopher *ph, int set_flag)
+int	check_stop_condition(t_philosopher *ph, int set_flag)
 {
 	pthread_mutex_lock(&ph->params->death_mutex);
 	if (set_flag)
@@ -14,9 +26,9 @@ int check_stop_condition(t_philosopher *ph, int set_flag)
 	return (0);
 }
 
-long int get_current_time(void)
+long int	get_current_time(void)
 {
-	struct	timeval	current;
+	struct timeval	current;
 	long int		ms_time;
 
 	if (gettimeofday(&current, NULL) == -1)
@@ -28,7 +40,7 @@ long int get_current_time(void)
 	return (ms_time);
 }
 
-void custom_usleep(long int time_in_ms)
+void	custom_usleep(long int time_in_ms)
 {
 	long int	start_time;
 

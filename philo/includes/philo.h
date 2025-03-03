@@ -1,7 +1,19 @@
-#ifndef PHILOSOPHER_H
-# define PHILOSOPHER_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nashxo <nashxo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/12 16:29:12 by amagomad          #+#    #+#             */
+/*   Updated: 2025/03/03 12:28:34 by nashxo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//
+#ifndef PHILO_H
+# define PHILO_H
+
+// ================== LIBS ==================
 
 # include <stdio.h>
 # include <unistd.h>
@@ -10,44 +22,44 @@
 # include <pthread.h>
 # include <limits.h>
 
-//
+// ================== STRUCTURES ==================
 
 typedef struct s_params
 {
-	int                 total_philos;       // nb philosophers
-	int                 time_to_die;        // time to die
-	int                 time_to_eat;        // time to eat
-	int                 time_to_sleep;      // time to sleep
-	int                 required_meals;     // nb to eat per philo
-	long int            start_time;         // program start time (for timestamp calculations)
-	pthread_mutex_t     printing_mutex;     // mutex for printing messages
-	pthread_mutex_t     death_mutex;        // mutex for checking death/stop condition
-	pthread_mutex_t     meal_time_mutex;    // mutex for protecting last meal time
-	pthread_mutex_t     finish_mutex;       // mutex for protecting the "finished" state
+	int					total_philos;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	int					required_meals;
+	long int			start_time;
+	pthread_mutex_t		printing_mutex;
+	pthread_mutex_t		death_mutex;
+	pthread_mutex_t		meal_time_mutex;
+	pthread_mutex_t		finish_mutex;
 	int					philosophers_finished;
-	int					stop_flag;          // flag to stop the simulation if a philosopher dies or all have eaten
-}   t_params;
+	int					stop_flag;
+}	t_params;
 
 typedef struct s_philosopher
 {
-	int					philo_id;			// philo identifier
-	pthread_t			main_thread;		// main thread of the philosopher
-	pthread_t			death_monitor_thread;// thread for death monitoring
-	pthread_mutex_t		*right_fork;		// pointer to the right fork
-	pthread_mutex_t		left_fork;			// left fork
-	t_params			*params;			// pointer to the global parameters
-	long int			last_meal_time;		// timestamp of last meal
-	unsigned int		meal_count;			// how many times this philosopher has eaten
-	int					is_finished;		// 1 if the philosopher has finished (if required_meals != -1)
-}   t_philosopher;
+	int					philo_id;
+	pthread_t			main_thread;
+	pthread_t			death_monitor_thread;
+	pthread_mutex_t		*right_fork;
+	pthread_mutex_t		left_fork;
+	t_params			*params;
+	long int			last_meal_time;
+	unsigned int		meal_count;
+	int					is_finished;
+}	t_philosopher;
 
 typedef struct s_all_data
 {
-	t_philosopher       *philo_array;        // array of all philosophers
-	t_params            params;              // global parameters
-}   t_all_data;
+	t_philosopher		*philo_array;
+	t_params			params;
+}	t_all_data;
 
-//
+// ================== FUNCTIONS ==================
 
 int			parse_arguments(int argc, char **argv, t_all_data *data);
 int			initialize_all(t_all_data *data);
@@ -62,7 +74,7 @@ void		wait_for_termination(t_all_data *data);
 long int	ft_atoi(const char *str);
 void		characters_arg(char **av);
 
-// utils
+// ================== UTILS ==================
 
 int			ft_strlen(char *str);
 void		ft_putstr_fd(char *s, int fd);

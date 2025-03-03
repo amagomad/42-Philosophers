@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nashxo <nashxo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/12 16:29:12 by amagomad          #+#    #+#             */
+/*   Updated: 2025/03/03 12:25:30 by nashxo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 
 void	characters_arg(char **av)
@@ -9,7 +21,7 @@ void	characters_arg(char **av)
 	while (av[i])
 	{
 		j = 0;
-		while(av[i][j])
+		while (av[i][j])
 		{
 			if (av[i][j] >= '0' && av[i][j] <= '9')
 				j++;
@@ -52,8 +64,8 @@ int	parse_arguments(int ac, char **av, t_all_data *data)
 		return (-1);
 	characters_arg(av);
 	data->params.total_philos = ft_atoi(av[1]);
-	data->params.time_to_die  = ft_atoi(av[2]);
-	data->params.time_to_eat  = ft_atoi(av[3]);
+	data->params.time_to_die = ft_atoi(av[2]);
+	data->params.time_to_eat = ft_atoi(av[3]);
 	data->params.time_to_sleep = ft_atoi(av[4]);
 	data->params.required_meals = -1;
 	if (ac - 1 == 5)
