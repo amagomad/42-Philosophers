@@ -6,7 +6,7 @@
 /*   By: nashxo <nashxo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:29:12 by amagomad          #+#    #+#             */
-/*   Updated: 2025/03/03 13:05:51 by nashxo           ###   ########.fr       */
+/*   Updated: 2025/03/10 14:32:50 by nashxo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	wait_for_termination(t_all_data *data)
 	while (!check_stop_condition2(data))
 		custom_usleep(1);
 	if (data->params.stop_flag == 2)
-		printf("Each philosopher ate %d time(s)\n", data->params.required_meals);
+		printf("Each philosopher ate %d time(s)\n", \
+			data->params.required_meals);
 	ft_free(data);
 }

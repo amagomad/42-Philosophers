@@ -1,7 +1,7 @@
 NAME = philo
 HEADER = ./includes/
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -I $(HEADER) -pthread
+CFLAGS = -Wall -Wextra -Werror -g -I $(HEADER) -pthread -fsanitize=thread
 OBJS = $(SRC:.c=.o)
 SRC = ./src/main.c \
       ./src/error.c \

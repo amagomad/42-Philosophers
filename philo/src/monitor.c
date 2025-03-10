@@ -6,7 +6,7 @@
 /*   By: nashxo <nashxo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:29:12 by amagomad          #+#    #+#             */
-/*   Updated: 2025/03/03 12:25:47 by nashxo           ###   ########.fr       */
+/*   Updated: 2025/03/10 14:33:03 by nashxo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,15 @@ void	*philosopher_routine(void *data)
 	t_philosopher	*ph;
 
 	ph = (t_philosopher *)data;
+	pthread_create(&ph->death_monitor_thread, NULL, monitor_death, data);
+	pthread_detach(ph->death_monitor_thread);
 	if (ph->philo_id % 2 == 0)
 		custom_usleep(ph->params->time_to_eat / 10);
 	while (!check_stop_condition(ph, 0))
 	{
-		pthread_create(&ph->death_monitor_thread, NULL, monitor_death, data);
 		perform_actions(ph);
-		pthread_detach(ph->death_monitor_thread);
 		if (handle_meal_count(ph))
-			return (NULL);
+			break ;
 	}
 	return (NULL);
 }
