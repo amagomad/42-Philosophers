@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nashxo <nashxo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amagomad <amagomad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:29:12 by amagomad          #+#    #+#             */
-/*   Updated: 2025/03/03 12:28:34 by nashxo           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:19:15 by amagomad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			parse_arguments(int argc, char **argv, t_all_data *data);
 int			initialize_all(t_all_data *data);
 void		print_status(char *msg, t_philosopher *ph);
 long int	get_current_time(void);
-void		custom_usleep(long int time_in_ms);
+void		custom_usleep(long int time_in_ms, t_params *params);
 int			create_philosopher_threads(t_all_data *data);
 void		perform_actions(t_philosopher *ph);
 int			check_stop_condition(t_philosopher *ph, int set_flag);

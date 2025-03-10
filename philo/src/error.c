@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nashxo <nashxo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amagomad <amagomad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:29:12 by amagomad          #+#    #+#             */
-/*   Updated: 2025/03/10 14:32:50 by nashxo           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:20:02 by amagomad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	ft_free(t_all_data *data)
 void	wait_for_termination(t_all_data *data)
 {
 	while (!check_stop_condition2(data))
-		custom_usleep(1);
+		custom_usleep(1, &data->params);
 	if (data->params.stop_flag == 2)
 		printf("Each philosopher ate %d time(s)\n", \
 			data->params.required_meals);

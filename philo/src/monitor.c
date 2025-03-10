@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nashxo <nashxo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amagomad <amagomad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:29:12 by amagomad          #+#    #+#             */
-/*   Updated: 2025/03/10 14:33:03 by nashxo           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:18:46 by amagomad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*monitor_death(void *data)
 	t_philosopher	*ph;
 
 	ph = (t_philosopher *)data;
-	custom_usleep(ph->params->time_to_die + 1);
+	custom_usleep(ph->params->time_to_die + 1, ph->params);
 	pthread_mutex_lock(&ph->params->meal_time_mutex);
 	pthread_mutex_lock(&ph->params->finish_mutex);
 	if (!check_stop_condition(ph, 0)
@@ -65,15 +65,15 @@ void	*philosopher_routine(void *data)
 
 	ph = (t_philosopher *)data;
 	pthread_create(&ph->death_monitor_thread, NULL, monitor_death, data);
-	pthread_detach(ph->death_monitor_thread);
 	if (ph->philo_id % 2 == 0)
-		custom_usleep(ph->params->time_to_eat / 10);
+		custom_usleep(ph->params->time_to_eat / 10, ph->params);
 	while (!check_stop_condition(ph, 0))
 	{
 		perform_actions(ph);
 		if (handle_meal_count(ph))
 			break ;
 	}
+	pthread_join(ph->death_monitor_thread, NULL);
 	return (NULL);
 }
 

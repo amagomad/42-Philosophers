@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nashxo <nashxo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amagomad <amagomad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:29:12 by amagomad          #+#    #+#             */
-/*   Updated: 2025/03/03 12:24:31 by nashxo           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:21:14 by amagomad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,20 @@ long int	get_current_time(void)
 	return (ms_time);
 }
 
-void	custom_usleep(long int time_in_ms)
+void	custom_usleep(long int time_in_ms, t_params *params)
 {
 	long int	start_time;
 
 	start_time = get_current_time();
 	while ((get_current_time() - start_time) < time_in_ms)
-		usleep(time_in_ms / 10);
+	{
+		pthread_mutex_lock(&params->death_mutex);
+		if (params->stop_flag)
+		{
+			pthread_mutex_unlock(&params->death_mutex);
+			break ;
+		}
+		pthread_mutex_unlock(&params->death_mutex);
+		usleep(100);
+	}
 }
